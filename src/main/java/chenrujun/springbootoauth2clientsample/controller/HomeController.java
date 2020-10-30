@@ -45,6 +45,7 @@ public class HomeController {
             this.oAuth2AuthorizedClientService.loadAuthorizedClient(
                 authentication.getAuthorizedClientRegistrationId(),
                 authentication.getName());
+        // accessToken in authorizedClient can not refresh automatically.
         logAuthorizedClient(authorizedClient);
         return "graph";
     }
