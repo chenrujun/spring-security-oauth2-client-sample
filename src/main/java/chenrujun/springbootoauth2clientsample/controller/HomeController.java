@@ -24,7 +24,7 @@ public class HomeController {
         this.oAuth2AuthorizedClientService = oAuth2AuthorizedClientService;
     }
 
-    @GetMapping("/home")
+    @GetMapping({ "/", "/home" })
     @ResponseBody
     String home(OAuth2AuthenticationToken authentication) {
         LOGGER.info("home()");
@@ -47,6 +47,19 @@ public class HomeController {
                 authentication.getName());
         logAuthorizedClient(authorizedClient);
         return "graph";
+    }
+
+    @GetMapping("/office365")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('SCOPE_https://manage.office.com/ActivityFeed.Read')")
+    String office365(OAuth2AuthenticationToken authentication) {
+        LOGGER.info("office365()");
+        final OAuth2AuthorizedClient authorizedClient =
+            this.oAuth2AuthorizedClientService.loadAuthorizedClient(
+                authentication.getAuthorizedClientRegistrationId(),
+                authentication.getName());
+        logAuthorizedClient(authorizedClient);
+        return "office365";
     }
 
     @GetMapping("/notExist")
