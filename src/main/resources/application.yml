@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: develop
+  security:
+    oauth2:
+      client:
+        provider:
+          microsoft-identity:
+            authorization-uri: https://login.microsoftonline.com/${tenant-id}/oauth2/v2.0/authorize
+            token-uri: https://login.microsoftonline.com/${tenant-id}/oauth2/v2.0/token
+            user-info-uri: https://graph.microsoft.com/oidc/userinfo
+            jwk-set-uri: https://login.microsoftonline.com/${tenant-id}/discovery/keys
+            user-name-attribute: name
+        registration:
+          microsoft-graph:
+            provider: microsoft-identity
+            client-id: ${client-id}
+            client-secret: ${client-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/microsoft-graph"
+            scope: openid, profile, https://graph.microsoft.com/user.read
