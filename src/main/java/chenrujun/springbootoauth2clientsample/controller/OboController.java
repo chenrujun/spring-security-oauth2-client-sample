@@ -1,5 +1,7 @@
 package chenrujun.springbootoauth2clientsample.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 @Controller
 public class OboController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(OboController.class);
     final WebClient webClient;
 
     public OboController(WebClient webClient) {
@@ -20,9 +23,11 @@ public class OboController {
 
     @GetMapping("/obo/graph")
     @ResponseBody
-    public String index(
+    public String oboGraph(
         @RegisteredOAuth2AuthorizedClient("microsoft-graph") OAuth2AuthorizedClient oAuth2AuthorizedClient
     ) {
+        LOGGER.info("oboGraph()");
+        HomeController.logAuthorizedClient(oAuth2AuthorizedClient);
         String resourceUri = "https://graph.microsoft.com/v1.0/me/memberOf";
         return webClient
             .get()

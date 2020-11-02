@@ -76,7 +76,7 @@ public class HomeController {
         return "notExist";
     }
 
-    void logAuthorizedClient(OAuth2AuthorizedClient authorizedClient) {
+    static void logAuthorizedClient(OAuth2AuthorizedClient authorizedClient) {
         LOGGER.info(
             "principalName = {}",
             authorizedClient.getPrincipalName()

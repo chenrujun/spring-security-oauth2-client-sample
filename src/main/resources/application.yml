@@ -1,3 +1,7 @@
+server:
+  servlet:
+    session:
+      timeout: 36000000
 spring:
   profiles:
     active: develop
@@ -18,11 +22,11 @@ spring:
             client-secret: ${client-secret}
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/microsoft-graph"
-            scope: openid, profile, https://graph.microsoft.com/user.read
+            scope: openid, profile, offline_access, https://graph.microsoft.com/user.read
           office365:
             provider: microsoft-identity
             client-id: ${client-id}
             client-secret: ${client-secret}
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/office365"
-            scope: openid, profile, https://manage.office.com/ActivityFeed.Read
+            scope: openid, profile, offline_access, https://manage.office.com/ActivityFeed.Read
