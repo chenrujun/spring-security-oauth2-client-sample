@@ -1,4 +1,4 @@
-package chenrujun.springbootoauth2clientsample;
+package chenrujun.spring.security.oauth2.client.sample;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

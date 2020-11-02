@@ -1,4 +1,4 @@
-package chenrujun.springbootoauth2clientsample.security;
+package chenrujun.spring.security.oauth2.client.sample.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

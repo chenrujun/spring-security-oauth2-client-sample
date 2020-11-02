@@ -1,4 +1,4 @@
-package chenrujun.springbootoauth2clientsample.controller;
+package chenrujun.spring.security.oauth2.client.sample.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

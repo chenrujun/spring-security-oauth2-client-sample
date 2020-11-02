@@ -9,10 +9,10 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>chenrujun</groupId>
-  <artifactId>spring-boot-oauth2-client-sample</artifactId>
+  <artifactId>spring-security-oauth2-client-sample</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>spring-boot-oauth2-client-sample</name>
-  <description>Sample project for Spring Boot Oauth 2</description>
+  <name>spring-security-oauth2-client-sample</name>
+  <description>spring-security-oauth2-client sample</description>
 
   <properties>
     <java.version>11</java.version>
