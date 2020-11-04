@@ -37,5 +37,22 @@ public class OboController {
             .bodyToMono(String.class)
             .block();
     }
+
+    @GetMapping("/obo/localhost")
+    @ResponseBody
+    public String oboLocalhost(
+        @RegisteredOAuth2AuthorizedClient("localhost") OAuth2AuthorizedClient oAuth2AuthorizedClient
+    ) {
+        LOGGER.info("oboLocalhost()");
+        HomeController.logAuthorizedClient(oAuth2AuthorizedClient);
+        String resourceUri = "http://localhost:8070/test";
+        return webClient
+            .get()
+            .uri(resourceUri)
+            .attributes(oauth2AuthorizedClient(oAuth2AuthorizedClient))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
 }
 

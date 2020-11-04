@@ -1,4 +1,5 @@
 server:
+  port: 8080
   servlet:
     session:
       timeout: 36000000
@@ -30,3 +31,10 @@ spring:
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/office365"
             scope: openid, profile, offline_access, https://manage.office.com/ActivityFeed.Read
+          localhost:
+            provider: microsoft-identity
+            client-id: ${client-id}
+            client-secret: ${client-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/localhost"
+            scope: openid, profile, offline_access, http://localhost:8070/test
