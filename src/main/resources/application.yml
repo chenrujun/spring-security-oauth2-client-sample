@@ -31,3 +31,10 @@ spring:
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/office"
             scope: openid, profile, offline_access, https://manage.office.com/ActivityFeed.Read
+          arm:
+            provider: microsoft-identity
+            client-id: ${client-id}
+            client-secret: ${client-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/arm"
+            scope: openid, profile, offline_access, https://management.core.windows.net/user_impersonation

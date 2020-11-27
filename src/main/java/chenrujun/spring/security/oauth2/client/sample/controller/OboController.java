@@ -48,15 +48,27 @@ public class OboController {
         return "office";
     }
 
+    @GetMapping("/obo/arm")
+    @ResponseBody
+    public String oboArm(
+        @RegisteredOAuth2AuthorizedClient("arm") OAuth2AuthorizedClient oAuth2AuthorizedClient
+    ) {
+        LOGGER.info("=================================== oboArm()");
+        HomeController.logAuthorizedClient(oAuth2AuthorizedClient);
+        return "arm";
+    }
+
     @GetMapping("/obo/all")
     @ResponseBody
     public String oboAll(
         @RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graphClient,
-        @RegisteredOAuth2AuthorizedClient("office") OAuth2AuthorizedClient officeClient
+        @RegisteredOAuth2AuthorizedClient("office") OAuth2AuthorizedClient officeClient,
+        @RegisteredOAuth2AuthorizedClient("arm") OAuth2AuthorizedClient armClient
     ) {
         LOGGER.info("=================================== oboAll()");
         HomeController.logAuthorizedClient(graphClient);
         HomeController.logAuthorizedClient(officeClient);
+        HomeController.logAuthorizedClient(armClient);
         return "all";
     }
 }
