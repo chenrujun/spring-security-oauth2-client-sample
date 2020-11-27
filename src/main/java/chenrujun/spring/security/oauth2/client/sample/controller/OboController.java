@@ -24,9 +24,9 @@ public class OboController {
     @GetMapping("/obo/graph")
     @ResponseBody
     public String oboGraph(
-        @RegisteredOAuth2AuthorizedClient("microsoft-graph") OAuth2AuthorizedClient oAuth2AuthorizedClient
+        @RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient oAuth2AuthorizedClient
     ) {
-        LOGGER.info("oboGraph()");
+        LOGGER.info("=================================== oboGraph()");
         HomeController.logAuthorizedClient(oAuth2AuthorizedClient);
         String resourceUri = "https://graph.microsoft.com/v1.0/me/memberOf";
         return webClient
@@ -38,21 +38,25 @@ public class OboController {
             .block();
     }
 
-    @GetMapping("/obo/localhost")
+    @GetMapping("/obo/office")
     @ResponseBody
-    public String oboLocalhost(
-        @RegisteredOAuth2AuthorizedClient("localhost") OAuth2AuthorizedClient oAuth2AuthorizedClient
+    public String oboOffice(
+        @RegisteredOAuth2AuthorizedClient("office") OAuth2AuthorizedClient oAuth2AuthorizedClient
     ) {
-        LOGGER.info("oboLocalhost()");
+        LOGGER.info("=================================== oboOffice()");
         HomeController.logAuthorizedClient(oAuth2AuthorizedClient);
-        String resourceUri = "http://localhost:8070/test";
-        return webClient
-            .get()
-            .uri(resourceUri)
-            .attributes(oauth2AuthorizedClient(oAuth2AuthorizedClient))
-            .retrieve()
-            .bodyToMono(String.class)
-            .block();
+        return "office";
+    }
+
+    @GetMapping("/obo/all")
+    @ResponseBody
+    public String oboAll(
+        @RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graphClient,
+        @RegisteredOAuth2AuthorizedClient("office") OAuth2AuthorizedClient officeClient
+    ) {
+        LOGGER.info("=================================== oboAll()");
+        HomeController.logAuthorizedClient(graphClient);
+        HomeController.logAuthorizedClient(officeClient);
+        return "all";
     }
 }
-

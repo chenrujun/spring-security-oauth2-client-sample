@@ -17,24 +17,17 @@ spring:
             jwk-set-uri: https://login.microsoftonline.com/${tenant-id}/discovery/keys
             user-name-attribute: name
         registration:
-          microsoft-graph:
+          graph:
             provider: microsoft-identity
             client-id: ${client-id}
             client-secret: ${client-secret}
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/microsoft-graph"
-            scope: openid, profile, offline_access, https://graph.microsoft.com/user.read
-          office365:
+            redirect-uri: "{baseUrl}/login/oauth2/code/graph"
+            scope: openid, profile, offline_access, https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Directory.AccessAsUser.All
+          office:
             provider: microsoft-identity
             client-id: ${client-id}
             client-secret: ${client-secret}
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/office365"
+            redirect-uri: "{baseUrl}/login/oauth2/code/office"
             scope: openid, profile, offline_access, https://manage.office.com/ActivityFeed.Read
-          localhost:
-            provider: microsoft-identity
-            client-id: ${client-id}
-            client-secret: ${client-secret}
-            authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/localhost"
-            scope: openid, profile, offline_access, http://localhost:8070/test
