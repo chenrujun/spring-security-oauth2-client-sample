@@ -12,21 +12,21 @@ import org.springframework.web.reactive.function.client.WebClient;
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 @Controller
-public class OboController {
+public class ClientController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OboController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
     final WebClient webClient;
 
-    public OboController(WebClient webClient) {
+    public ClientController(WebClient webClient) {
         this.webClient = webClient;
     }
 
-    @GetMapping("/obo/graph")
+    @GetMapping("/client/graph")
     @ResponseBody
-    public String oboGraph(
+    public String clientGraph(
         @RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient oAuth2AuthorizedClient
     ) {
-        LOGGER.info("=================================== oboGraph()");
+        LOGGER.info("=================================== clientGraph()");
         HomeController.logAuthorizedClient(oAuth2AuthorizedClient);
         String resourceUri = "https://graph.microsoft.com/v1.0/me/memberOf";
         return webClient
@@ -38,34 +38,34 @@ public class OboController {
             .block();
     }
 
-    @GetMapping("/obo/office")
+    @GetMapping("/client/office")
     @ResponseBody
-    public String oboOffice(
+    public String clientOffice(
         @RegisteredOAuth2AuthorizedClient("office") OAuth2AuthorizedClient oAuth2AuthorizedClient
     ) {
-        LOGGER.info("=================================== oboOffice()");
+        LOGGER.info("=================================== clientOffice()");
         HomeController.logAuthorizedClient(oAuth2AuthorizedClient);
         return "office";
     }
 
-    @GetMapping("/obo/arm")
+    @GetMapping("/client/arm")
     @ResponseBody
-    public String oboArm(
+    public String clientArm(
         @RegisteredOAuth2AuthorizedClient("arm") OAuth2AuthorizedClient oAuth2AuthorizedClient
     ) {
-        LOGGER.info("=================================== oboArm()");
+        LOGGER.info("=================================== clientArm()");
         HomeController.logAuthorizedClient(oAuth2AuthorizedClient);
         return "arm";
     }
 
-    @GetMapping("/obo/all")
+    @GetMapping("/client/all")
     @ResponseBody
-    public String oboAll(
+    public String clientAll(
         @RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graphClient,
         @RegisteredOAuth2AuthorizedClient("office") OAuth2AuthorizedClient officeClient,
         @RegisteredOAuth2AuthorizedClient("arm") OAuth2AuthorizedClient armClient
     ) {
-        LOGGER.info("=================================== oboAll()");
+        LOGGER.info("=================================== clientAll()");
         HomeController.logAuthorizedClient(graphClient);
         HomeController.logAuthorizedClient(officeClient);
         HomeController.logAuthorizedClient(armClient);
